@@ -1,3 +1,6 @@
+import {getEventDetail} from '@revgaming/helpers'
+import {Events} from '@revgaming/session'
+
 import Bowser from 'bowser'
 import {
   setCurrentAgent,
@@ -52,22 +55,15 @@ export const isTablet = () => parser.isPlatform('tablet')
 export const is = (string, withAliases = false) =>
   parser.is(string, withAliases)
 
-const bindSessionListener = () => {
-  window.addEventListener('session-initialised', function (event) {
-    if (event.detail) {
-      const now = Date.now()
-      const sessionCreatedAt = parseInt(event.detail.createdAt)
-      if (now - sessionCreatedAt < 1000) {
-        incrementAgentCounter('sessions')
-      }
-    }
-  })
-}
+
+const bindSessionListener = () =>
+  window.addEventListener(Events.SessionCreated, () =>
+    incrementAgentCounter('sessions'),
+  )
+
 const bindLoginListener = () => {
-  window.addEventListener('user-authenticated', function (event) {
-    if (event.detail) {
-      const user = parseInt(event.detail.user)
-      if (user) setCurrentUser(user.id)
-    }
+  window.addEventListener(Events.UserAuthenticated, function (event) {
+    const user = getEventDetail('user')
+    if (user) if (user) setCurrentUser(user.id)
   })
 }

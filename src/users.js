@@ -9,11 +9,11 @@ export const setCurrentUser = id => {
 }
 
 export const getUsers = () => {
-  return getIdentifications()['users']
+  return getIdentifications()['uid']
 }
 
 const updateUsers = data => {
-  updateIdentifications('users', data)
+  updateIdentifications('uid', data)
 }
 
 export const getUserIdentification = () => {
