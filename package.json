@@ -1,0 +1,21 @@
+{
+  "name": "@revgaming/device",
+  "version": "1.0.1",
+  "author": "estagent <estagent@gmail.com>",
+  "description": "devices module for global",
+  "keywords": [
+    "javascript",
+    "revgaming",
+    "global",
+    "device",
+    "userAgent"
+  ],
+  "homepage": "https://github.com/estagent/devices",
+  "main": "src/index.js",
+  "dependencies": {
+    "bowser": "^2.11.0",
+    "crypto-js": "^4.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {}
+}
