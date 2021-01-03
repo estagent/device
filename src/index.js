@@ -22,7 +22,7 @@ let parser
 
 export {getIdentifier, getIdentifications}
 
-export const bootDevice = opts => {
+export const bootDevice = (opts = {}) => {
   const UA = window.navigator.userAgent
   parser = Bowser.getParser(UA)
   setCurrentAgent(UA)
