@@ -13,10 +13,11 @@ import {
   getUsers,
   incrementUserCounter,
 } from './users'
-import {getIdentifier} from './identifications'
+import {getIdentifier, getIdentifications} from './identifications'
 
 let parser
 
+export {getIdentifier, getIdentifications}
 export const bootDevice = (UA = window.navigator.userAgent) => {
   parser = Bowser.getParser(UA)
   setCurrentAgent(UA)
@@ -34,6 +35,7 @@ export const bootDevice = (UA = window.navigator.userAgent) => {
     isTablet: isTablet,
     isAgent: is,
     getDeviceId: getIdentifier,
+    getIdentifications: getIdentifications,
     getAgentIdentification: getAgentIdentification,
     updateAgentIdentification: updateAgentIdentification,
     incrementAgentCounter: incrementAgentCounter,
