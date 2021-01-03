@@ -41,7 +41,7 @@ export const bootDevice = (UA = window.navigator.userAgent) => {
     updateUserIdentification: updateUserIdentification,
     incrementUserCounter: incrementUserCounter,
     getAgents: getAgents,
-    getUsers: getUsers(),
+    getUsers: getUsers,
   }
 }
 export const isMobile = () => parser.isPlatform('mobile')
