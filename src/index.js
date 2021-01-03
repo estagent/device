@@ -21,11 +21,15 @@ import {getIdentifier, getIdentifications} from './identifications'
 let parser
 
 export {getIdentifier, getIdentifications}
-export const bootDevice = (UA = window.navigator.userAgent) => {
+
+export const bootDevice = opts => {
+  const UA = window.navigator.userAgent
   parser = Bowser.getParser(UA)
   setCurrentAgent(UA)
-  bindSessionListener()
-  bindLoginListener()
+  if (opts.hasOwnProperty('listeners') && opts.listeners instanceof Array) {
+    if (opts.listeners.includes('agents')) trackAgents()
+    if (opts.listeners.includes('users')) trackUsers()
+  }
   return {
     getAgentParser: () => parser,
     getAgentResult: () => parser.getResult(),
@@ -55,15 +59,14 @@ export const isTablet = () => parser.isPlatform('tablet')
 export const is = (string, withAliases = false) =>
   parser.is(string, withAliases)
 
-
-const bindSessionListener = () =>
+const trackAgents = () =>
   window.addEventListener(Events.SessionCreated, () =>
     incrementAgentCounter('sessions'),
   )
 
-const bindLoginListener = () => {
+const trackUsers = () => {
   window.addEventListener(Events.UserAuthenticated, function (event) {
-    const user = getEventDetail('user')
-    if (user) if (user) setCurrentUser(user.id)
+    const user = getEventDetail(event, 'user')
+    if (user) setCurrentUser(user.uuid ?? user.id)
   })
 }

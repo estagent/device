@@ -13,10 +13,11 @@
   "homepage": "https://github.com/estagent/device",
   "main": "src/index.js",
   "dependencies": {
+    "@revgaming/helpers": "^1.0.8",
+    "@revgaming/session": "^1.0.2",
     "bowser": "^2.11.0",
     "crypto-js": "^4.0.0",
-    "uuid": "^8.3.2",
-    "@revgaming/session": "^1.0.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {}
 }
